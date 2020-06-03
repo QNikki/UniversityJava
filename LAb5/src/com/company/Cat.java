@@ -14,7 +14,7 @@ public class Cat extends Pet {
 
     @Override
     public String toString() {
-        return "Cat extends" + super.toString();
+        return "Cat extends" + super.toString() + "quiet " + _quiet;
     }
 
     public String cast() {
