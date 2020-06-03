@@ -11,7 +11,8 @@ public class CollectionPets {
     
     public void Add(Pet pet) throws ValidationException {
         if (_pets.length == _count) {
-            throw  new ValidationException("Collection is full");
+            expandCollection();
+            _count *= 2;
         }
 
         int index = FirstFree();
@@ -25,7 +26,8 @@ public class CollectionPets {
 
     public void Add(Pet pet, int index) throws ValidationException {
         if (_pets.length == _count) {
-            throw  new ValidationException("Collection is full");
+            expandCollection();
+            _count *= 2;
         }
 
         if(_pets.length < index || index < 0) {
@@ -178,5 +180,13 @@ public class CollectionPets {
 
             return res;
         }
+    }
+
+    private void expandCollection() {
+        Pet[] expandedArr = new Pet[_pets.length + _count];
+        for (int i = 0; i < _pets.length; i++) {
+            expandedArr[i] = _pets[i];
+        }
+        _pets = expandedArr;
     }
 }

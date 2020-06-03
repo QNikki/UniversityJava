@@ -3,12 +3,12 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        CollectionPets pets = new CollectionPets(4);
+        CollectionPets pets = new CollectionPets(2);
         try {
             pets.Add(new Cat("cat 1", "colour cat 1", 1));
-            pets.Add(new Cat("cat 2", "colour cat 2", 1), 3);
+            pets.Add(new Cat("cat 2", "colour cat 2", 1), 1);
             pets.Add(new Dog("dog 1", "colour dog 1", 1));
-            pets.Add(new Dog("dog 2", "colour dog 2", 1), 2);
+            pets.Add(new Dog("dog 2", "colour dog 2", 1),3);
             for (Pet pet: pets.getPets()) {
                 System.out.println(pet);
             }
