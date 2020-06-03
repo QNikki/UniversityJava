@@ -1,0 +1,24 @@
+"Cat" : {
+"cat 1", 
+"colour cat 1",
+ "1" ,
+"false",
+}
+"Cat" : {
+"cat 2",
+"colour cat 2",
+"1" ,
+"true",
+}
+"Dog" : {
+"dog 1",
+"colour dog 1",
+"1",
+"true",
+}
+"Dog" : {
+"dog 2",
+"colour dog 2",
+"1",
+"false"
+}
