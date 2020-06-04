@@ -1,53 +1,53 @@
 package com.company;
 
 public class CollectionPets {
-    private Pet[] _pets;
-    private int _count;
+    private Pet[] pets;
+    private int count;
 
     public CollectionPets(int size) {
-        _pets = new Pet[size];
-        _count = 0;
+        pets = new Pet[size];
+        count = 0;
     }
     
     public void Add(Pet pet) throws ValidationException {
-        if (_pets.length == _count) {
+        if (pets.length == count) {
             expandCollection();
-            _count *= 2;
+            count *= 2;
         }
 
         int index = FirstFree();
-        _pets[index] = pet;
-        _count++;
+        pets[index] = pet;
+        count++;
     }
 
     public int getCount() {
-        return _count;
+        return count;
     }
 
     public void Add(Pet pet, int index) throws ValidationException {
-        if (_pets.length == _count) {
+        if (pets.length == count) {
             expandCollection();
-            _count *= 2;
+            count *= 2;
         }
 
-        if(_pets.length < index || index < 0) {
+        if(pets.length < index || index < 0) {
             throw  new ValidationException("Index most be > 0 an < size");
         }
 
-        if(_pets[index] != null) {
+        if(pets[index] != null) {
             throw new ValidationException("index is busy");
         }
 
-        _pets[index] = pet;
-        _count++;
+        pets[index] = pet;
+        count++;
     }
 
     public void Delete(int index) throws ValidationException {
-        if(_pets.length < index || index < 0) {
+        if(pets.length < index || index < 0) {
             throw  new ValidationException("Index most be > 0 and < size");
         }
 
-        _pets[index] = null;
+        pets[index] = null;
     }
 
     public void DeleteFirstName(String name) throws ValidationException {
@@ -66,7 +66,7 @@ public class CollectionPets {
             throw  new ValidationException("Not found pet with this name");
         }
         else {
-            return _pets[index];
+            return pets[index];
         }
     }
 
@@ -82,17 +82,17 @@ public class CollectionPets {
     }
 
     public void Replace(int index, Pet pet) throws ValidationException {
-        if(_pets.length < index || index < 0) {
+        if(pets.length < index || index < 0) {
             throw  new ValidationException("Index most be > 0 an < size");
         }
 
-        _pets[index] = pet;
+        pets[index] = pet;
     }
 
     public void ReplaceFirstName(String name, Pet pet) throws ValidationException {
         int index = FirstWithName(name);
         if (index != -1) {
-            _pets[index] = pet;
+            pets[index] = pet;
         }
         else {
             throw new ValidationException("Not found pet with this name");
@@ -101,25 +101,25 @@ public class CollectionPets {
     }
 
     public Pet getPet(int index) throws ValidationException {
-        if(_pets.length < index || index < 0) {
+        if(pets.length < index || index < 0) {
             throw  new ValidationException("Index most be > 0 an < size");
         }
 
-        return _pets[index];
+        return pets[index];
     }
 
     public Pet[] getPets() {
         int n = 0;
-        for(int i = 0; i < _pets.length; i++) {
-            if (_pets[i] != null) {
+        for(int i = 0; i < pets.length; i++) {
+            if (pets[i] != null) {
                 n++;
             }
         }
 
         Pet[] result = new Pet[n];
-        for(int i = 0, j = 0; i < _pets.length; i++) {
-            if (_pets[i] != null) {
-                result[j++] = _pets[i];
+        for(int i = 0, j = 0; i < pets.length; i++) {
+            if (pets[i] != null) {
+                result[j++] = pets[i];
             }
         }
         return  result;
@@ -127,7 +127,7 @@ public class CollectionPets {
 
     private int FirstFree() {
         int index = 0;
-        while (_pets[index] != null && _pets.length > index) { index++; }
+        while (pets[index] != null && pets.length > index) { index++; }
 
         return index;
     }
@@ -135,13 +135,13 @@ public class CollectionPets {
     private int FirstWithName(String name) {
         int index = 0;
         int res = -1;
-        while (res == -1 && index < _pets.length) {
-            if (_pets[index] == null)
+        while (res == -1 && index < pets.length) {
+            if (pets[index] == null)
             {
                 index++;
             }
             else {
-                if (name.equalsIgnoreCase(_pets[index].Name)) {
+                if (name.equalsIgnoreCase(pets[index].Name)) {
                     res = index;
                 }
 
@@ -152,9 +152,9 @@ public class CollectionPets {
     }
 
     private Pet[] AllWithName(String name) {
-        int[] searchMark = new int[_pets.length];
-        for ( int i = 0; i < _pets.length; i++) {
-            if(name.equalsIgnoreCase(_pets[i].Name)) {
+        int[] searchMark = new int[pets.length];
+        for (int i = 0; i < pets.length; i++) {
+            if(name.equalsIgnoreCase(pets[i].Name)) {
                 searchMark[i] = 1;
             }
             else {
@@ -174,7 +174,7 @@ public class CollectionPets {
             Pet[] res = new Pet[n];
             for ( int i = 0, j = 0; i < searchMark.length; i++) {
                 if(searchMark[i] == 1) {
-                    res[j++] = _pets[i];
+                    res[j++] = pets[i];
                 }
             }
 
@@ -183,10 +183,10 @@ public class CollectionPets {
     }
 
     private void expandCollection() {
-        Pet[] expandedArr = new Pet[_pets.length + _count];
-        for (int i = 0; i < _pets.length; i++) {
-            expandedArr[i] = _pets[i];
+        Pet[] expandedArr = new Pet[pets.length + count];
+        for (int i = 0; i < pets.length; i++) {
+            expandedArr[i] = pets[i];
         }
-        _pets = expandedArr;
+        pets = expandedArr;
     }
 }

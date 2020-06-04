@@ -1,20 +1,20 @@
 package com.company;
 
 public class Cat extends Pet {
-    private boolean _quiet;
+    private boolean quiet;
     public Cat(String name, String colour, int age, boolean quiet) {
         super(name, colour, age);
-        _quiet = quiet;
+        this.quiet = quiet;
 
     }
 
     public boolean isQuiet() {
-        return _quiet;
+        return quiet;
     }
 
     @Override
     public String toString() {
-        return "Cat extends" + super.toString() + "quiet " + _quiet;
+        return "Cat extends" + super.toString() + "quiet " + quiet;
     }
 
     public String cast() {
